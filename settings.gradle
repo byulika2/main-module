@@ -1,0 +1,5 @@
+rootProject.name = 'main-module'
+include 'module-core'
+include 'module-authentication'
+include 'module-common'
+
