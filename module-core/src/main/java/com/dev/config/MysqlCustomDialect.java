@@ -1,21 +1,18 @@
 package com.dev.config;
 
-import org.hibernate.dialect.InnoDBStorageEngine;
-import org.hibernate.dialect.MySQL5Dialect;
-import org.hibernate.dialect.MySQLStorageEngine;
-import org.hibernate.dialect.function.StandardSQLFunction;
+import org.hibernate.boot.model.FunctionContributions;
+import org.hibernate.dialect.MySQLDialect;
 import org.hibernate.type.StandardBasicTypes;
 
-public class MysqlCustomDialect extends MySQL5Dialect {
+public class MysqlCustomDialect extends MySQLDialect {
 
-  public MysqlCustomDialect() {
-    super();
-    registerFunction("GROUP_CONCAT",
-        new StandardSQLFunction("GROUP_CONCAT", StandardBasicTypes.STRING));
-  }
+    private static final String GROUP_CONCAT = "GROUP_CONCAT";
+    private static final String GROUP_CONCAT_PATTERN = "GROUP_CONCAT (?1) SEPARATOR (?2)";
 
-  @Override
-  protected MySQLStorageEngine getDefaultMySQLStorageEngine() {
-    return InnoDBStorageEngine.INSTANCE;
-  }
+    @Override
+    public void contributeFunctions(FunctionContributions functionContributions) {
+        functionContributions.getFunctionRegistry()
+                .registerPattern(GROUP_CONCAT, GROUP_CONCAT_PATTERN,
+                        functionContributions.getTypeConfiguration().getBasicTypeRegistry().resolve(StandardBasicTypes.STRING));
+    }
 }

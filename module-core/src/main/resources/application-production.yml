@@ -10,9 +10,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#    database-platform: org.hibernate.dialect.MySQLDialect
+    database-platform: com.dev.config.MysqlCustomDialect
     hibernate:
-      ddl-auto: update # or `none` # beta나 실제 서비스에선 none으로 둘 것
+      ddl-auto: none # or `none` # beta나 실제 서비스에선 none으로 둘 것
     properties:
       hibernate:
         show_sql: true # to System OutDataSourceConfiguration
