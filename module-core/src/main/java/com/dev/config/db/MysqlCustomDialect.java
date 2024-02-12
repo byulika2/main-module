@@ -1,4 +1,4 @@
-package com.dev.config;
+package com.dev.config.db;
 
 import org.hibernate.boot.model.FunctionContributions;
 import org.hibernate.dialect.MySQLDialect;

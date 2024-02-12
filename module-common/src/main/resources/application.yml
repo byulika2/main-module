@@ -1,2 +1,10 @@
 server:
   port: 8100
+
+spring:
+  profiles:
+    group:
+      local: local
+      production: production
+  config:
+    import: application-core.yml
