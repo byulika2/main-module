@@ -11,7 +11,7 @@ subprojects {
 
     group = 'com.dev'
     version = '0.0.1-SNAPSHOT'
-    sourceCompatibility = '21'
+    sourceCompatibility = JavaVersion.VERSION_21
 
     configurations {
         compileOnly {
